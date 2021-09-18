@@ -1,5 +1,7 @@
 package apiDataExtraction;
 
+import lombok.Value;
+
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.ConnectException;
@@ -8,13 +10,14 @@ import java.net.URL;
 
 import static utils.Constants.*;
 
+@Value
 public class APIConnector {
-    private final InputStreamReader launchURL;
-    private final InputStreamReader payloadURL;
+    InputStreamReader launchStream;
+    InputStreamReader payloadStream;
 
     public APIConnector(URL launchURL, URL payloadURL) throws IOException {
-        this.launchURL = connectToAPI(launchURL);
-        this.payloadURL = connectToAPI(payloadURL);
+        this.launchStream = connectToAPI(launchURL);
+        this.payloadStream = connectToAPI(payloadURL);
     }
 
     public InputStreamReader connectToAPI(URL apiURL) throws IOException {

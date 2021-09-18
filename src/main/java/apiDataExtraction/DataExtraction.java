@@ -1,0 +1,68 @@
+package apiDataExtraction;
+
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+import data.LaunchData;
+import data.PayloadData;
+
+import java.io.InputStreamReader;
+import java.lang.reflect.Type;
+import java.time.Instant;
+import java.time.ZoneId;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import static utils.Constants.*;
+
+public class DataExtraction {
+    private final Gson gson;
+
+    public DataExtraction() {
+        this.gson = new Gson();
+    }
+
+    public Object[] prepareDataForGraph(InputStreamReader payloadStream, InputStreamReader launchStream) {
+        Type launchDataType = new TypeToken<List<LaunchData>>() {}.getType();
+        Type payloadDataType = new TypeToken<List<PayloadData>>() {}.getType();
+        List<PayloadData> payloadDataList = gson.fromJson(payloadStream, payloadDataType);
+        List<LaunchData> launchDataList = gson.fromJson(launchStream, launchDataType);
+
+        Map<String, PayloadData> payloadIDtoData = new HashMap<>();
+        for (PayloadData payloadData : payloadDataList) {
+            payloadIDtoData.put(payloadData.getId(), payloadData);
+        }
+
+        String[] lables = new String[launchDataList.size()];
+        double[] values = new double[launchDataList.size()];
+
+        for (int i = 0; i < launchDataList.size(); i++) {
+            LaunchData launchData = launchDataList.get(i);
+            List<String> payloadIds = launchData.getPayloads();
+
+            double payloadWeight = 0;
+            for (String payloadId : payloadIds) {
+                if (payloadIDtoData.containsKey(payloadId)) {
+                    payloadWeight += payloadIDtoData.get(payloadId).getMass_kg();
+                } else {
+                    String errorMessage = String.format("%s Data extracted from API has an error. The payload %s from launch %s is not" +
+                            "contained in the data base from API.", ERROR, payloadId, launchData.getId());
+                    throw new IllegalArgumentException(errorMessage);
+                }
+            }
+
+            lables[i] = parseUTC(launchData.getDate_utc());
+            values[i] = payloadWeight;
+        }
+
+        return new Object[]{lables, values};
+    }
+
+    private String parseUTC(String utcFormat) {
+        Instant instant = Instant.parse(utcFormat);
+        int year = instant.atZone(ZoneId.systemDefault()).getYear();
+        int month = instant.atZone(ZoneId.systemDefault()).getMonth().getValue();
+
+        return String.format("%d/%d", month, year);
+    }
+}
