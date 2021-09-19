@@ -23,6 +23,8 @@ public class DataExtraction {
     }
 
     public Object[] prepareDataForGraph(InputStreamReader payloadStream, InputStreamReader launchStream) {
+        System.out.printf("%sStarting to extract data.", INFO);
+
         Type launchDataType = new TypeToken<List<LaunchData>>() {}.getType();
         Type payloadDataType = new TypeToken<List<PayloadData>>() {}.getType();
         List<PayloadData> payloadDataList = gson.fromJson(payloadStream, payloadDataType);
@@ -42,13 +44,7 @@ public class DataExtraction {
 
             double payloadWeight = 0;
             for (String payloadId : payloadIds) {
-                if (payloadIDtoData.containsKey(payloadId)) {
-                    payloadWeight += payloadIDtoData.get(payloadId).getMass_kg();
-                } else {
-                    String errorMessage = String.format("%s Data extracted from API has an error. The payload %s from launch %s is not" +
-                            "contained in the data base from API.", ERROR, payloadId, launchData.getId());
-                    throw new IllegalArgumentException(errorMessage);
-                }
+                payloadWeight += payloadIDtoData.get(payloadId).getMass_kg();
             }
 
             lables[i] = parseUTC(launchData.getDate_utc());

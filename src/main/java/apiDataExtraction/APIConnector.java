@@ -27,7 +27,7 @@ public class APIConnector {
 
         int response = conn.getResponseCode();
         if (response != 200) {
-            String errorMessage = "Could not establish connection to API.";
+            String errorMessage = String.format("Could not establish connection to API %s.", apiURL.getPath());
             throw new ConnectException(String.format("%sResponseCode %d%n%s%n", ERROR, response, errorMessage));
         }
 
