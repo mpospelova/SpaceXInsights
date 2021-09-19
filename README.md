@@ -17,5 +17,5 @@ git clone https://github.com/mpospelova/SpaceXInsights.git
 ```
 mvn install
 ```
-Now you can run the code.
-    
+4. The code can be run by going to the ``Main.java`` class. It contains a `public static void main` method
+which can be used to start the code.    
