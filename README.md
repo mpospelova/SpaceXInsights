@@ -9,9 +9,13 @@ a graph and transforms it in a base64 string which can then be shipped over an A
 #### Running the code
 1. The code heavily depends on Maven. When you don't have Maven installed, you can do so by following [this](https://maven.apache.org/download.cgi)
     link.   
-2. Install al the maven dependencies with
+2. Clone the repository:
+```
+git clone https://github.com/mpospelova/SpaceXInsights.git
+```
+3. Go to cloned repository and install all the maven dependencies:
 ```
 mvn install
 ```
-And now you can run the code.
+Now you can run the code.
     
