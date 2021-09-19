@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeEach;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.io.IOException;
 import java.lang.reflect.Type;
@@ -36,7 +37,7 @@ public class DataExtractorTest {
     }
 
     @Test
-    public void correct_data_returned() throws IOException {
+    public void correct_data_size_returned() throws IOException {
         APIConnector apiConnection = new APIConnector(launchURL, payloadURL);
         DataExtractor dataExtractor = new DataExtractor();
         Object[] data = dataExtractor.prepareDataForGraph(apiConnection.getPayloadStream(), apiConnection.getLaunchStream());
@@ -45,5 +46,13 @@ public class DataExtractorTest {
 
         assertEquals(launchDataList.size(), values.length);
         assertEquals(launchDataList.size(), labels.length);
+    }
+
+    @Test
+    public void check_exception_is_thrown_if_inputstream_empty() {
+        DataExtractor dataExtractor = new DataExtractor();
+
+        assertThrows(IllegalArgumentException.class, () ->
+                dataExtractor.prepareDataForGraph(null, null));
     }
 }

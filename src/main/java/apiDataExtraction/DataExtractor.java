@@ -29,6 +29,11 @@ public class DataExtractor {
     public Object[] prepareDataForGraph(InputStreamReader payloadStream, InputStreamReader launchStream) {
         System.out.printf("%sStarting to extract data.", INFO);
 
+        if(payloadStream == null || launchStream == null) {
+            String errorMessage = String.format("%s An empty stream was passed.", ERROR);
+            throw new IllegalArgumentException(errorMessage);
+        }
+
         Type launchDataType = new TypeToken<List<LaunchData>>() {}.getType();
         Type payloadDataType = new TypeToken<List<PayloadData>>() {}.getType();
         List<PayloadData> payloadDataList = gson.fromJson(payloadStream, payloadDataType);
