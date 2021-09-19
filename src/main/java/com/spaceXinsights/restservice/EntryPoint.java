@@ -4,7 +4,6 @@ import com.spaceXinsights.restservice.apiDataExtraction.APIConnector;
 import com.spaceXinsights.restservice.apiDataExtraction.DataExtractor;
 import com.spaceXinsights.restservice.graph.ImageDrawer;
 import com.spaceXinsights.restservice.utils.Base64Converter;
-import com.spaceXinsights.restservice.utils.Output;
 
 import java.awt.image.BufferedImage;
 import java.io.IOException;
@@ -13,12 +12,9 @@ import java.net.URL;
 
 import static com.spaceXinsights.restservice.utils.Constants.*;
 
-public class Main {
+public class EntryPoint {
     /**
-     *  This method connects to API, extracts com.spaceXinsights.restservice.data and draws an image.
-     * @param launch Link of API for launch com.spaceXinsights.restservice.data.
-     * @param payload Link of API for payload com.spaceXinsights.restservice.data.
-     * @throws IOException If wrong link was entered, or if program couldn't connect to API.
+     *  This method connects to API, extracts data and draws an image.
      */
     public String start(String launch, String payload) throws IOException {
         try {
@@ -33,7 +29,7 @@ public class Main {
 
             ImageDrawer imageDrawer = new ImageDrawer(values, labels);
             BufferedImage image = imageDrawer.drawImage();
-            String base64String = Base64Converter.convertToBase64(image);
+            String base64String = Base64Converter.decode(image);
             System.out.printf("%sCreated the base64 string \"%s\"%n", INFO, base64String);
 
             return base64String;

@@ -1,4 +1,4 @@
-package utils;
+package com.spaceXinsights.restservice.utils;
 
 public final class Constants {
     public static final String ERROR = "ERROR: ";

@@ -1,4 +1,4 @@
-package data;
+package com.spaceXinsights.restservice.data;
 
 import lombok.Builder;
 import lombok.Value;

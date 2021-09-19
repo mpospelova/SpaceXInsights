@@ -1,4 +1,4 @@
-package apiDataExtraction;
+package com.spaceXinsights.restservice.apiDataExtraction;
 
 import lombok.Value;
 
@@ -8,7 +8,7 @@ import java.net.ConnectException;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-import static utils.Constants.*;
+import static com.spaceXinsights.restservice.utils.Constants.*;
 
 @Value
 public class APIConnector {

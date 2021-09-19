@@ -1,4 +1,4 @@
-package com.spaceXinsights.restservice.start;
+package com.spaceXinsights.restservice;
 
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;

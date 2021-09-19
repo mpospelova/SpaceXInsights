@@ -1,5 +1,6 @@
-package com.spaceXinsights.restservice;
+package com.spaceXinsights.restservice.restAPI;
 
+import com.spaceXinsights.restservice.EntryPoint;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -23,6 +24,9 @@ public class OutputController {
         return String.format("<img src=\"data:image/png;base64,%s\"/>", base64);
     }
 
+    /**
+     * Info to go to correct address
+     */
     @GetMapping("/")
     public String defaultOutput() throws IOException {
         return "Please go to http://localhost:8080/image to see results.";

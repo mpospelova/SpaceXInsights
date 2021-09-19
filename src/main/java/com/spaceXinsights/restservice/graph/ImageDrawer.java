@@ -1,11 +1,11 @@
-package graph;
+package com.spaceXinsights.restservice.graph;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.util.Arrays;
 
-import static utils.Constants.*;
+import static com.spaceXinsights.restservice.utils.Constants.*;
 
 public class ImageDrawer {
     private final double[] values;
@@ -21,7 +21,7 @@ public class ImageDrawer {
     }
 
     /**
-     * This method initializes a BarChart class and draws a bar chart graph with data from class variables.
+     * This method initializes a BarChart class and draws a bar chart com.spaceXinsights.restservice.graph with com.spaceXinsights.restservice.data from class variables.
      * @return
      */
     public BufferedImage drawImage() {
@@ -38,7 +38,11 @@ public class ImageDrawer {
         frame.add(bc);
         frame.setVisible(true);
 
+
         BufferedImage awtImage = new BufferedImage(frame.getWidth(), frame.getHeight(), BufferedImage.TYPE_INT_RGB);
+        Graphics2D graphics2D = awtImage.createGraphics();
+        frame.paint(graphics2D);
+
         System.out.printf("%sFinished drawing image%n", INFO);
 
         return awtImage;

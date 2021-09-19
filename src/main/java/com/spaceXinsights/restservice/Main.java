@@ -1,4 +1,4 @@
-package com.spaceXinsights.restservice.start;
+package com.spaceXinsights.restservice;
 
 import com.spaceXinsights.restservice.EntryPoint;
 

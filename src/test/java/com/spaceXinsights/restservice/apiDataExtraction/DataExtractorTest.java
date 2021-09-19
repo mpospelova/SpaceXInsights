@@ -1,9 +1,9 @@
-package apiDataExtraction;
+package com.spaceXinsights.restservice.apiDataExtraction;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import data.LaunchData;
-import data.PayloadData;
+import com.spaceXinsights.restservice.data.LaunchData;
+import com.spaceXinsights.restservice.data.PayloadData;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeEach;
 

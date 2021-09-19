@@ -1,4 +1,4 @@
-import com.spaceXinsights.restservice.Main;
+import com.spaceXinsights.restservice.EntryPoint;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
@@ -6,22 +6,22 @@ import java.net.MalformedURLException;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-public class MainTest {
+public class EntryPointTest {
 
     @Test
     public void throws_exception_if_wrong_url() {
         String wrongURL = "This is the wrong URL";
-        Main main = new Main();
+        EntryPoint entryPoint = new EntryPoint();
         assertThrows(MalformedURLException.class, () ->
-                main.start(wrongURL, wrongURL));
+                entryPoint.start(wrongURL, wrongURL));
     }
 
     @Test
     public void throws_exception_if_can_not_connect_to_API() {
         String wrongURL = "https://api.spacexdata.com/v4/payload";
-        Main main = new Main();
+        EntryPoint entryPoint = new EntryPoint();
 
         assertThrows(IOException.class, () ->
-                main.start(wrongURL, wrongURL));
+                entryPoint.start(wrongURL, wrongURL));
     }
 }

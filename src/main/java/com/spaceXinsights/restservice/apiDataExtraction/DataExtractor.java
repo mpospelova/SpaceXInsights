@@ -1,9 +1,9 @@
-package apiDataExtraction;
+package com.spaceXinsights.restservice.apiDataExtraction;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import data.LaunchData;
-import data.PayloadData;
+import com.spaceXinsights.restservice.data.LaunchData;
+import com.spaceXinsights.restservice.data.PayloadData;
 
 import java.io.InputStreamReader;
 import java.lang.reflect.Type;
@@ -13,7 +13,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import static utils.Constants.*;
+import static com.spaceXinsights.restservice.utils.Constants.*;
 
 public class DataExtractor {
     private final Gson gson;
@@ -23,11 +23,11 @@ public class DataExtractor {
     }
 
     /**
-     * This method uses data streams to extract data for launches and payloads. After extraction, it prepares the data
-     * for graph drawing.
+     * This method uses com.spaceXinsights.restservice.data streams to extract com.spaceXinsights.restservice.data for launches and payloads. After extraction, it prepares the com.spaceXinsights.restservice.data
+     * for com.spaceXinsights.restservice.graph drawing.
      */
     public Object[] prepareDataForGraph(InputStreamReader payloadStream, InputStreamReader launchStream) {
-        System.out.printf("%sStarting to extract data.", INFO);
+        System.out.printf("%sStarting to extract com.spaceXinsights.restservice.data.", INFO);
 
         if(payloadStream == null || launchStream == null) {
             String errorMessage = String.format("%s An empty stream was passed.", ERROR);

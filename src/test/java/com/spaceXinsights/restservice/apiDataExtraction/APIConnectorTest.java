@@ -1,4 +1,4 @@
-package apiDataExtraction;
+package com.spaceXinsights.restservice.apiDataExtraction;
 
 import org.junit.jupiter.api.Test;
 

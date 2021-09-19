@@ -1,4 +1,4 @@
-package graph;
+package com.spaceXinsights.restservice.graph;
 /* Code taken from https://www.javacodex.com/Graphics/Bar-Chart */
 
 import javax.swing.*;
