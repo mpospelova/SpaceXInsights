@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Test;
 import java.io.IOException;
 import java.net.MalformedURLException;
 
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class EntryPointTest {
@@ -23,5 +24,14 @@ public class EntryPointTest {
 
         assertThrows(IOException.class, () ->
                 entryPoint.start(wrongURL, wrongURL));
+    }
+
+    @Test
+    public void string_returned() throws IOException {
+        String correctURLLaunch = "https://api.spacexdata.com/v5/launches";
+        String correctURLPayload = "https://api.spacexdata.com/v4/payloads";
+        EntryPoint entryPoint = new EntryPoint();
+
+        assertNotNull(entryPoint.start(correctURLLaunch, correctURLPayload));
     }
 }
