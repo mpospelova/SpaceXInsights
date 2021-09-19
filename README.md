@@ -17,7 +17,18 @@ git clone https://github.com/mpospelova/SpaceXInsights.git
 ```
 mvn install
 ```
-4. The code can be run in 2 different ways. One way would be to run the code from the class `Main.java`.
-Here, you only create the graph and nothing more.
-The second way would be to run the code from the class `RestServiceApplication`. If you do that, you should then go to your browser and call the address
-`http://localhost:8080/image`. The graph is displayed in the browser.
+4. The code can be run in 2 different ways:
+    - Run the code from the class `Main.java`. Here, you only create the graph.
+    - Run the code from the class `RestServiceApplication`. If you do that, a REST API is created and you can see the displayed image from the browser. To do that, go to the web   address `http://localhost:8080/image`. The graph will be displayed there.
+
+
+##### General process
+1. Code is started from `Main.java` or  `RestServiceApplication`. From there, `EntryPoint` is called.
+
+2. `EntryPoint` is responsible for connecting to the SpaceX API, extracting data, preparing data for graph drawing and shipping it to console/web browser.
+    3. At first, `EntryPoint` needs to connect to SpaceX API. It does so by calling the class `APIConnector`.
+        4. `APIConnector` opens a connection to the API and extracts data streams.
+    5. `EntryPoint` receives data streams and passes them over to `DataExtractor` class.
+        6. `DataExtractor` extracts data from streams to lists.
+  
+3.`EntryPoint` uses the created lists and draws a graph by calling `ImageDrawer`. The image is then converted to a base64 string and returned.
