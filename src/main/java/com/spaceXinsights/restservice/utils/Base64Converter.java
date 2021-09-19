@@ -1,4 +1,4 @@
-package utils;
+package com.spaceXinsights.restservice.utils;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
