@@ -14,8 +14,7 @@ import java.lang.reflect.Type;
 import java.net.URL;
 import java.util.List;
 
-
-public class DataExtractionTest {
+public class DataExtractorTest {
     List<PayloadData> payloadDataList;
     List<LaunchData> launchDataList;
     URL launchURL;
@@ -39,8 +38,8 @@ public class DataExtractionTest {
     @Test
     public void correct_data_returned() throws IOException {
         APIConnector apiConnection = new APIConnector(launchURL, payloadURL);
-        DataExtraction dataExtraction = new DataExtraction();
-        Object[] data = dataExtraction.prepareDataForGraph(apiConnection.getPayloadStream(), apiConnection.getLaunchStream());
+        DataExtractor dataExtractor = new DataExtractor();
+        Object[] data = dataExtractor.prepareDataForGraph(apiConnection.getPayloadStream(), apiConnection.getLaunchStream());
         String[] labels = (String[]) data[0];
         double[] values = (double[]) data[1];
 

@@ -20,6 +20,9 @@ public class APIConnector {
         this.payloadStream = connectToAPI(payloadURL);
     }
 
+    /**
+     * This method connects to the API using passed URL.. Then it extracts the response as an input stream.
+     */
     public InputStreamReader connectToAPI(URL apiURL) throws IOException {
         HttpURLConnection conn = (HttpURLConnection) apiURL.openConnection();
         conn.setRequestMethod("GET");

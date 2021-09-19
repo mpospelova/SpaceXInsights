@@ -1,5 +1,5 @@
 import apiDataExtraction.APIConnector;
-import apiDataExtraction.DataExtraction;
+import apiDataExtraction.DataExtractor;
 import graph.ImageDrawer;
 import utils.Base64Converter;
 
@@ -7,7 +7,6 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.Arrays;
 
 import static utils.Constants.*;
 
@@ -20,14 +19,20 @@ public class Main {
         start(launchURL, payloadURL);
     }
 
-    public static void start(String lauch, String payload) throws IOException {
+    /**
+     *  This method connects to API, extracts data and draws an image.
+     * @param launch Link of API for launch data.
+     * @param payload Link of API for payload data.
+     * @throws IOException If wrong link was entered, or if program couldn't connect to API.
+     */
+    public static void start(String launch, String payload) throws IOException {
         try {
-            URL launchURL = new URL(lauch);
+            URL launchURL = new URL(launch);
             URL payloadURL = new URL(payload);
             APIConnector apiConnection = new APIConnector(launchURL, payloadURL);
 
-            DataExtraction dataExtraction = new DataExtraction();
-            Object[] graphData = dataExtraction.prepareDataForGraph(apiConnection.getPayloadStream(), apiConnection.getLaunchStream());
+            DataExtractor dataExtractor = new DataExtractor();
+            Object[] graphData = dataExtractor.prepareDataForGraph(apiConnection.getPayloadStream(), apiConnection.getLaunchStream());
             String[] labels = (String[]) graphData[0];
             double[] values = (double[]) graphData[1];
 

@@ -15,13 +15,17 @@ import java.util.Map;
 
 import static utils.Constants.*;
 
-public class DataExtraction {
+public class DataExtractor {
     private final Gson gson;
 
-    public DataExtraction() {
+    public DataExtractor() {
         this.gson = new Gson();
     }
 
+    /**
+     * This method uses data streams to extract data for launches and payloads. After extraction, it prepares the data
+     * for graph drawing.
+     */
     public Object[] prepareDataForGraph(InputStreamReader payloadStream, InputStreamReader launchStream) {
         System.out.printf("%sStarting to extract data.", INFO);
 
@@ -35,7 +39,7 @@ public class DataExtraction {
             payloadIDtoData.put(payloadData.getId(), payloadData);
         }
 
-        String[] lables = new String[launchDataList.size()];
+        String[] labels = new String[launchDataList.size()];
         double[] values = new double[launchDataList.size()];
 
         for (int i = 0; i < launchDataList.size(); i++) {
@@ -47,11 +51,11 @@ public class DataExtraction {
                 payloadWeight += payloadIDtoData.get(payloadId).getMass_kg();
             }
 
-            lables[i] = parseUTC(launchData.getDate_utc());
+            labels[i] = parseUTC(launchData.getDate_utc());
             values[i] = payloadWeight;
         }
 
-        return new Object[]{lables, values};
+        return new Object[]{labels, values};
     }
 
     private String parseUTC(String utcFormat) {

@@ -20,6 +20,10 @@ public class ImageDrawer {
         Arrays.fill(colors, Color.red);
     }
 
+    /**
+     * This method initializes a BarChart class and draws a bar chart graph with data from class variables.
+     * @return
+     */
     public BufferedImage drawImage() {
         System.out.printf("%sStarting to draw image%n", INFO);
 
@@ -31,14 +35,10 @@ public class ImageDrawer {
         frame.setSize(1400, 900);
 
         BarChart bc = new BarChart(this.values, this.labels, this.colors, title);
-
         frame.add(bc);
         frame.setVisible(true);
 
         BufferedImage awtImage = new BufferedImage(frame.getWidth(), frame.getHeight(), BufferedImage.TYPE_INT_RGB);
-        Graphics2D graphics2D = awtImage.createGraphics();
-        frame.paint(graphics2D);
-
         System.out.printf("%sFinished drawing image%n", INFO);
 
         return awtImage;
